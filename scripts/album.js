@@ -28,7 +28,23 @@ var albumPicasso = {
      ]
  };
 
- var createSongRow = function(songNumber, songName, songLength) {
+ var albumToddler = {
+   title: 'Terrible Twos',
+   artist: 'Li\'l Toddler',
+   label: 'Binky',
+   year: '2017',
+   albumArtUrl: 'assets/images/album_covers/14.png',
+   songs: [
+       { title: 'Don\'t want to nap!', duration: '3:17' },
+       { title: 'No, no, no!', duration: '4:04' },
+       { title: 'I want to do it by myself', duration: '2:58'},
+       { title: 'Potty time', duration: '1:27' },
+       { title: 'Where\'s binky?', duration: '3:46'}
+   ]
+ };
+
+
+var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number">' + songNumber + '</td>'
@@ -38,10 +54,10 @@ var albumPicasso = {
       ;
 
      return template;
- };
+};
 
- var setCurrentAlbum = function(album) {
-     
+var setCurrentAlbum = function(album) {
+
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
@@ -62,4 +78,17 @@ var albumPicasso = {
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+
+      var counter = 0;
+      var albumImage = document.getElementsByClassName('album-cover-art')[0];
+      albumImage.addEventListener("click", function(){
+        counter+=1;
+        if (counter % 3 == 1){
+          setCurrentAlbum(albumMarconi);
+        } else if (counter % 3 == 2){
+          setCurrentAlbum(albumToddler);
+        } else {
+          setCurrentAlbum(albumPicasso);
+        }
+      });
  };
